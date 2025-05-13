@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --primary: #ffffff;
+      --text-color: #ffffff;
+      --accent: #fff799;
+      --bg-color: #000000;
+      --success-bg: rgba(240, 255, 240, 0.95);
+      --error-bg: rgba(255, 228, 225, 0.95);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Pretendard', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .contact-section {
+      padding: 60px 20px;
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    .contact-section h2 {
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+    }
+
+    .contact-section p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      max-width: 700px;
+      padding: 18px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      background-color: rgba(255, 255, 255, 0.95);
+      color: #000;
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 180px;
+    }
+
+    .contact-form button {
+      padding: 16px 40px;
+      background-color: var(--accent);
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      background-color: #fff3b0;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: var(--accent);
+    }
+
+    a.back {
+      display: block;
+      margin-top: 20px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a.back:hover {
+      text-decoration: underline;
+    }
+
+    /* ✅ 팝업 메시지 조정 */
+    .popup-message {
+      position: fixed;
+      top: 20px; /* ← 더 위로 이동 */
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 22px; /* ← 더 작게 */
+      border-radius: 8px;
+      font-size: 0.95rem; /* ← 폰트 크기 줄임 */
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, top 0.4s ease;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .popup-message.show {
+      opacity: 1;
+      top: 40px; /* 애니메이션 시작 위치 */
+      pointer-events: auto;
+    }
+
+    .popup-success {
+      background-color: var(--success-bg);
+      color: #0a5400;
+    }
+
+    .popup-error {
+      background-color: var(--error-bg);
+      color: #900000;
+    }
+
+    .popup-message i {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="contact-section">
+    <h2>Contact Me</h2>
+    <p>저와 연락을 원하시면 아래 양식을 작성해주세요. 이메일로 바로 전송됩니다.</p>
+
+    <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/didi09@naver.com" method="POST">
+      <input type="text" name="name" placeholder="이름" required>
+      <input type="email" name="email" placeholder="이메일 주소" required>
+      <textarea name="message" placeholder="메시지를 입력하세요" required></textarea>
+      <input type="hidden" name="_captcha" value="false">
+      <button type="submit">보내기</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="social-icons">
+      <a href="https://github.com/eunji-c0923" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/yourid" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:didi09@naver.com"><i class="fas fa-envelope"></i></a>
+    </div>
+    <a class="back" href="index.html">← 홈으로 돌아가기</a>
+  </footer>
+
+  <!-- ✅ 팝업 메시지 -->
+  <div id="popup" class="popup-message"><i class="fas fa-check-circle"></i><span>메시지가 성공적으로 전송되었습니다!</span></div>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const popup = document.getElementById('popup');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      })
+      .then(response => {
+        if (response.ok) {
+          showPopup("메시지가 성공적으로 전송되었습니다!", true);
+          form.reset();
+        } else {
+          showPopup("전송에 실패했습니다. 다시 시도해주세요.", false);
+        }
+      })
+      .catch(() => {
+        showPopup("서버 오류로 전송이 실패했습니다.", false);
+      });
+    });
+
+    function showPopup(message, success = true) {
+      popup.className = 'popup-message show ' + (success ? 'popup-success' : 'popup-error');
+      popup.innerHTML = `
+        <i class="fas ${success ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+        <span>${message}</span>
+      `;
+      setTimeout(() => {
+        popup.classList.remove('show');
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
