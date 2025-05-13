@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -103,6 +102,8 @@
     }
     iframe {
       border-radius: 16px;
+      width: 1200px;
+      height: 600px;
     }
     @keyframes sparkleFade {
       to {
@@ -111,27 +112,25 @@
       }
     }
 
-          .footer {
-        margin-top: 60px;
-        padding: 20px 0;
-        text-align: center;
-        background: rgba(255, 255, 255, 0.05);
-        color: #ffffff;
-        font-size: 0.95rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
+    .footer {
+      margin-top: 60px;
+      padding: 20px 0;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-      .footer a {
-        color: #ffffff;
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
+    .footer a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
 
-      .footer a:hover {
-        color: #ffe476;
-      }
-
-
+    .footer a:hover {
+      color: #ffe476;
+    }
   </style>
 </head>
 <body>
@@ -163,15 +162,14 @@
 
   <!-- 유튜브 영상 -->
   <div class="video-wrapper">
-    <iframe width="1200" height="600" 
-     src="https://www.youtube.com/embed/eHCYzIu-ij4?si=zOHvJSqHInHbT4ig&autoplay=1" 
-     title="YouTube video player" 
-     frameborder="0" 
-     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-     referrerpolicy="strict-origin-when-cross-origin" 
-     allowfullscreen>
+    <iframe 
+      src="https://www.youtube.com/embed/9SZ4bipsYvw?autoplay=1&loop=1&playlist=9SZ4bipsYvw&mute=1"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      referrerpolicy="strict-origin-when-cross-origin">
     </iframe>
-
   </div>
 
   <script>
@@ -205,11 +203,11 @@
       setTimeout(() => sparkle.remove(), 600);
     });
   </script>
- 
-    <footer class="footer">
-      <p>© 2025 eunji_log. All Rights Reserved.</p>
-      <p><a href="mailto:didi09@naver.com"></a></p>
-    </footer>
+
+  <footer class="footer">
+    <p>© 2025 eunji_log. All Rights Reserved.</p>
+    <p><a href="mailto:didi09@naver.com">didi09@naver.com</a></p>
+  </footer>
 
 </body>
 </html>
