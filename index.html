@@ -5,13 +5,16 @@
   <title>포트폴리오 메인</title>
   <style>
     body {
-      font-family: 'Pretendard', sans-serif;
-      background-color: black;
-      color: white;
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Pretendard', sans-serif;
+  background-color: black;
+  color: white;
+  position: relative;
+  overflow-x: hidden;
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -113,8 +116,8 @@
     }
 
     .footer {
-      margin-top: 60px;
-      padding: 20px 0;
+      margin-top: auto;
+      padding: 30px 0 40px;
       text-align: center;
       background: rgba(255, 255, 255, 0.05);
       color: #ffffff;
@@ -122,15 +125,85 @@
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .footer a {
-      color: #ffffff;
-      text-decoration: none;
-      transition: color 0.3s ease;
+.footer p {
+  margin: 6px 0;
+}
+
+.footer a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #ffe476;
+}
+
+.footer .sns-icons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer .sns-icons a img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.footer .sns-icons a img:hover {
+  transform: scale(1.2);
+}
+
+    /* 배경 음악 */
+    audio {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      z-index: -1;
     }
 
-    .footer a:hover {
-      color: #ffe476;
-    }
+     /* 홈(소개/프로필) */
+#home {
+  margin-top: 120px; /* 페이지 상단에서 더 아래로 내림 */
+  text-align: center; /* 안녕하세요 문구 가운데 정렬 */
+}
+
+#home h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center; /* 혹시 모를 우선 적용 */
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  animation: fadeInUp 1.5s ease-out;
+  margin-top: 40px; /* 요소 자체도 약간 아래로 */
+}
+
+.profile img {
+  width: 180px;
+  aspect-ratio: 1 / 1; /* 정사각형 유지하면서 비율 적용 */
+  object-fit: cover;   /* 중앙에서 잘라내며 꽉 채우기 */
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+
+.profile p {
+  text-align: center;
+  font-size: 1.25rem; /* 기존 1.1rem → 약간 키움 */
+  animation: fadeInUp 2s ease-out;
+}
+
+
   </style>
 </head>
 <body>
@@ -150,6 +223,11 @@
       <img src="img/Asterum.png" alt="로고">
     </a>
   </div>
+   
+  <!-- 배경음악 -->
+  <audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
 
   <!-- 네비게이션 -->
   <nav class="navbar">
@@ -160,17 +238,14 @@
     <a href="contact.html">CONTACT</a>
   </nav>
 
-  <!-- 유튜브 영상 -->
-  <div class="video-wrapper">
-    <iframe 
-      src="https://www.youtube.com/embed/9SZ4bipsYvw?autoplay=1&loop=1&playlist=9SZ4bipsYvw&mute=1"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-      referrerpolicy="strict-origin-when-cross-origin">
-    </iframe>
-  </div>
+  <!-- 홈 -->
+  <section id="home">
+    <h1 class="bounce">안녕하세요 😊</h1>
+    <div class="profile">
+      <img src="img/KakaoTalk_20250514_161811955.jpg" alt="프로필 이미지">
+      <p>저는 디자이너/개발자입니다. 포트폴리오를 구경해보세요!</p>
+    </div>
+  </section>
 
   <script>
     const starsContainer = document.getElementById('stars');
@@ -205,9 +280,14 @@
   </script>
 
   <footer class="footer">
-    <p>© 2025 eunji_log. All Rights Reserved.</p>
-    <p><a href="mailto:didi09@naver.com">didi09@naver.com</a></p>
-  </footer>
+  <p>© 2025 eunji_log. All Rights Reserved.</p>
 
+  <div class="contact-info">
+    <a href="mailto:didi09@naver.com">didi09@naver.com</a>
+    <span>/</span>
+    <a href="tel:010-1234-5678">010-1234-5678</a>
+  </div>
+
+</footer>
 </body>
 </html>

@@ -5,7 +5,8 @@
   <title>포트폴리오</title>
   <style>
     :root {
-      background-color: black;
+      --bg-color: black; 
+      background-color: var(--bg-color);
       --primary: #ffffff;
       --text-color: #ffffff;
       --hover-shadow: rgba(255, 255, 255, 0.15);
@@ -23,11 +24,40 @@
       min-height: 100vh;
     }
 
+    .navbar {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      font-size: 20px;
+      margin-bottom: 50px;
+      padding-bottom: 20px; /* 구분선과 메뉴 사이 여백 */
+     
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #ffd86b;
+    }
+
     h1 {
       font-size: 2.8rem;
-      margin-bottom: 40px;
+      margin-bottom: 10px; /* 기존 40px → 10px로 줄임 */
       color: var(--primary);
       text-align: center;
+    }
+
+
+    .center-text {
+      margin-top: -10px; /* h1과 가까이 붙이기 */
+      margin-bottom: 60px; /* 아래쪽 요소들과 간격 확보 */
+      font-size: 1.1rem;
+      text-align: center;
+      color: #cccccc;
     }
 
     .gallery {
@@ -38,6 +68,32 @@
       max-width: 1200px;
     }
 
+     /* 🎬 전체 가운데 정렬 */
+    .video-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40px 0;
+    }
+
+    /* 🎬 16:9 비율 유지용 박스 */
+    .video-wrapper {
+      position: relative;
+      width: 800px;     /* 💡 원하는 너비로 조절 가능 */
+      height: 450px;    /* 💡 16:9 비율: 800x450 */
+      background: #000;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+    }
     .gallery img {
       width: 100%;
       border-radius: 16px;
@@ -97,6 +153,18 @@
       right: 0;
     }
 
+    .styled-hr {
+      height: 1px;
+      background-color: #ffffff;
+      border: none;
+      margin: 0; /* 메뉴바 바로 아래에 붙이기 */
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
@@ -107,11 +175,43 @@
         font-size: 2rem;
       }
     }
+
+
   </style>
 </head>
 <body>
-  <h1>PORTFOLIO</h1>
+      <!-- 네비게이션 -->
+  <nav class="navbar">
+    <a href="index.html">홈</a>
+    <a href="about.html">소개</a>
+    <a href="portfolio.html">포트폴리오</a>
+    <a href="board.html">NOTIC</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+ 
+  <hr class="styled-hr">
 
+    <h1>PORTFOLIO</h1>
+      <p class="center-text">참여율 100%인 포트폴리오입니다.</p>
+  <hr class="styled-hr">
+   <!-- 🎬 영상 섹션 -->
+  <h2>영상 편집</h2>
+
+<!-- 🎬 영상 박스 -->
+<div class="video-section">
+  <div class="video-wrapper">
+    <iframe 
+      src="https://www.youtube.com/embed/9SZ4bipsYvw?autoplay=1&mute=1&loop=1&playlist=9SZ4bipsYvw"
+      title="YouTube video player"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>
+   
+  <hr class="styled-hr">
+
+  <h2>포트폴리오</h2> 
   <div class="gallery">
     <img src="img/portfolio (10).jpg" alt="포트폴리오 이미지 1">
     <img src="img/portfolio (11).jpg" alt="포트폴리오 이미지 2">
@@ -154,7 +254,7 @@
     <img src="img/portfolio (54).jpg" alt="포트폴리오 이미지 39">
   </div>
 
-  <a  <a class="back" href="index.html">← 홈으로 돌아가기</a>
+  
 
   <!-- 모달 구조 -->
   <div class="modal" id="imgModal">
